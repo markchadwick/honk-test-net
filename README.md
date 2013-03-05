@@ -1,7 +1,7 @@
 Honk! Test Net!
 =============
 Some tools to help test browser-based network-y things in a headless
-environmentment. It leverages Philipp von Weitershausen <philipp@weitershausen.de>
+environmentment.
 
 
 XMLHttpRequest
@@ -14,16 +14,18 @@ properly set up and torn down around all your tests.
 
 Usage is as so:
 
-    require 'honk-test-net/http_server'
+```coffee
+require 'honk-test-net/http_server'
 
-    describe 'Remote Pants Service', ->
+describe 'Remote Pants Service', ->
 
-      it 'should give me info on pants', (done) ->
-        @server.when 'GET', '/pants', (req) ->
-          status: 200
-          body:   'Pants Found'
-
-        $.get '/',
-          success: (resp) ->
-            expect(resp.data).to.equal 'Pants Found'
-            done()
+  it 'should give me info on pants', (done) ->
+    @server.when 'GET', '/pants', (req) ->
+      status: 200
+      body:   'Pants Found'
+      
+    $.get '/',
+      success: (resp) ->
+        expect(resp.data).to.equal 'Pants Found'
+        done()
+```
