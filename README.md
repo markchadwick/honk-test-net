@@ -23,9 +23,13 @@ describe 'Remote Pants Service', ->
     @server.when 'GET', '/pants', (req) ->
       status: 200
       body:   'Pants Found'
-      
+
     $.get '/',
       success: (resp) ->
         expect(resp.data).to.equal 'Pants Found'
         done()
 ```
+
+Build status
+------------
+[![Build Status](https://secure.travis-ci.org/markchadwick/honk-test-net.png)](http://travis-ci.org/markchadwick/honk-test-net)
