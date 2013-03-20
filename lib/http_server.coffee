@@ -1,5 +1,6 @@
 mockServer = require './mock_server'
 
+
 class HttpServer
   constructor: ->
     @_patterns = []
