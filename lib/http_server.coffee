@@ -1,4 +1,5 @@
 mockServer = require './mock_server'
+dom        = require './dom'
 
 
 class HttpServer
@@ -35,7 +36,7 @@ class HttpServer
 # If we're running in a mocha environment, set up and tear down @server for each
 # test.
 beforeEach? ->
-  @server = new HttpServer()
+  @server = new HttpServer(dom.window)
   @server.start()
 
 afterEach? ->

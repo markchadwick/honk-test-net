@@ -3,9 +3,12 @@ LocalStorage  = require('localStorage')
 
 global.document     or= jsdom()
 global.window       or= document.createWindow()
+global.navigator    or= global.window.navigator
 global.localStorage or= LocalStorage
 
 beforeEach ->
   LocalStorage.clear()
 
-module.exports = global.document
+module.exports =
+  document: global.document
+  window:   global.window
