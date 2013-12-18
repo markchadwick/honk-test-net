@@ -3,6 +3,8 @@ Honk! Test Net!
 Some tools to help test browser-based network-y things in a headless
 environmentment.
 
+![Honk!  Bi-daily!](https://dl.dropboxusercontent.com/u/31982598/honk-edited-sm.jpg)
+
 
 XMLHttpRequest
 --------------
