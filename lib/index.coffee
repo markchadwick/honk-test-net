@@ -5,7 +5,7 @@ dom        = require './dom'
 class HttpServer
   constructor: (window) ->
     @_patterns = []
-    @window = window or global.window or dom.window
+    @window = window or dom.window
     @_server = new mockServer.MockHttpServer (req) =>
       @_handleRequest(req)
 
