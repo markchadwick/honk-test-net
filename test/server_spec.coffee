@@ -1,6 +1,7 @@
 expect = require('chai').expect
 
-honkTestNet = require '../lib/http_server'
+honkTestNet  = require '../lib/http_server'
+{HttpServer} = require '../lib/index'
 
 
 describe 'Test HTTP Server', ->
@@ -54,3 +55,7 @@ describe 'Test HTTP Server', ->
         expect(ajax.status).to.equal 404
         done()
 
+  it 'should set a window if not given one', ->
+    server = new HttpServer
+
+    expect(server.window).to.exist
