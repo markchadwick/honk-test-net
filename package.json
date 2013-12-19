@@ -4,12 +4,12 @@
   "main":     "./lib/index.coffee",
   "dependencies": {
     "coffee-script":  ">= 1.5.0",
+    "localStorage":   "1.0.2",
+    "jsdom":          "0.5.3",
     "lodash":         "1.0.x"
   },
   "devDependencies": {
     "chai":           "1.5.0",
-    "jsdom":          "0.5.3",
-    "localStorage":   "1.0.2",
     "mocha":          "1.8.1"
   },
   "scripts": {
