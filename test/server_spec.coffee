@@ -59,3 +59,16 @@ describe 'Test HTTP Server', ->
     server = new HttpServer
 
     expect(server.window).to.exist
+
+  it 'should overwrite a previously set pattern', (done) ->
+    @server.when 'GET', '/overwriting-test', (req) ->
+      status: 200
+      body:   'Better not'
+
+    @server.when 'GET', '/overwriting-test', (req) ->
+      status: 200
+      body:   'Okay'
+
+    @makeRequest 'GET', '/overwriting-test', (ajax) ->
+      expect(ajax.responseText).to.equal 'Okay'
+      done()
