@@ -4,13 +4,14 @@ dom        = require './dom'
 
 class HttpServer
   constructor: (window) ->
-    @_patterns = []
+    @_patterns = {}
     @window = window or dom.window
     @_server = new mockServer.MockHttpServer (req) =>
       @_handleRequest(req)
 
   when: (method, url, respond) ->
-    @_patterns.push [method, url, respond]
+    @_patterns[url] or= {}
+    @_patterns[url][method] = respond
 
   start: ->
     @_server.start(@window)
@@ -21,14 +22,14 @@ class HttpServer
   _handleRequest: (request) ->
     handed = false
 
-    for [method, url, respond] in @_patterns
-      if method is request.method and url is request.url
-        resp = respond(request) or {}
-        resp.status   or= 200
-        resp.body     or= ''
+    if @_patterns[request.url]? and @_patterns[request.url][request.method]?
+      respond = @_patterns[request.url][request.method]
+      resp = respond(request) or {}
+      resp.status   or= 200
+      resp.body     or= ''
 
-        request.receive resp.status, resp.body
-        handed = true
+      request.receive resp.status, resp.body
+      handed = true
 
     unless handed
       request.receive 404, 'Not Found'
